@@ -4,7 +4,7 @@ library(purrr)
 library(ggplot2)
 library(forcats)
 
-sti_billeder <- "C:/Users/augus/Desktop/pindespil/Jelly/AugustSD2111.github.io/assets/img/"
+sti_billeder <- "C:/Users/augus/Desktop/pindespil/Jelly/pindespil1908.github.io/assets/img/"
 
 opdateret <- Sys.Date()
 
