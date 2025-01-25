@@ -2,6 +2,7 @@ library(tidyr)
 library(dplyr)
 library(purrr)
 library(ggplot2)
+library(forcats)
 
 sti_billeder <- "C:/Users/augus/Desktop/pindespil/Jelly/AugustSD2111.github.io/assets/img/"
 
@@ -105,21 +106,3 @@ dev.off()
   
 
 
-pinde %>% 
-  filter(udfald == "vindende_hold", !is.na(spiller), spiller != "") %>% 
-  group_by(spiller) %>%
-  summarise(Pinde = n(), position = first(position), age = first(age), .groups = 'drop') %>% 
-  ggplot(aes(forecats::fct_reorder(spiller, Pinde), Pinde)) +  # Order by Pinde in ascending order
-  geom_segment(aes(x = fct_reorder(spiller, Pinde), xend = fct_reorder(spiller, Pinde),
-                   y = 0, yend = Pinde, color = position),
-               lwd = 2) +
-  geom_point(aes(shape = age, fill = position, color = position), size = 7.5) +
-  geom_text(aes(label = Pinde), color = "white", size = 5) +
-  scale_shape_manual(values = c(21, 22), name = " ") +
-  scale_x_discrete(name = "")+
-  geom_hline(yintercept = 0) +
-  coord_flip() +  # This flips the axes
-  theme_light() + 
-  theme(legend.title = element_blank())
-
-fct_
