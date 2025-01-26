@@ -109,6 +109,58 @@ pinde %>%
         axis.text.y = element_text(size = 16)) +
   labs(subtitle= paste0("Sidst opdateret: ", opdateret))
 dev.off()
+
+# posistions graf
+pinde %>% 
+  pivot_longer(cols = c(vindere, tabere), 
+               names_to = "source",  # A temporary column for identifying col1/col2
+               values_to = "spiller") %>%
+  mutate(pind = ifelse(source == "vindere", "sejre", "tabte")) %>%  # Assign 1 if from col1, 0 if from col2
+  select(-source)  %>% 
+  left_join(data, by = c("spiller"="spiller")) %>% 
+  filter(!is.na(spiller)) %>% 
+  group_by(id, position, pind) %>% 
+  summarise(vundne = n()) %>% 
+  rbind(data.frame(id = c(3, 3), 
+                   position = c("Keeper", "Keeper"), 
+                   pind = c("sejre", "tabte"),
+                   vundne = c(1,1))) %>% 
+  pivot_wider(names_from = pind,
+              values_from = vundne, values_fill = list(vundne = 0)) %>% 
+  mutate(gennemsnit = sejre/(tabte+sejre)*100) %>% 
+  ungroup() %>%
+  group_by(position) %>% 
+  mutate(gnm = cumsum(sejre)/(cumsum(tabte)+cumsum(sejre))*100) %>% 
+  ungroup() %>% 
+  arrange(as.numeric(id), position) %>% 
+  ggplot(aes(id, gennemsnit, color = position)) +
+    geom_point(size = 3, position = position_dodge(width = 0.2)) +
+    geom_point(aes(y = gnm, group = position), shape = 0, size = 0, na.rm = TRUE, position = position_dodge(width = 0.2))
+
+
+ ggplot(aes(x = as.numeric(pindespil_id), y = gennemsnit, color = position)) +
+   geom_point(size = 3, position = position_dodge(width = 0.2)) +
+   geom_point(aes(y = gnm, group = position), shape = 0, size = 0, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+   geom_smooth(aes(y = gnm, group = position, fill = position), method = "loess", se = F, na.rm = TRUE,
+               alpha = 0.2, position = position_dodge(width = 0.2)) +
+   theme_minimal() + theme(legend.position = "bottom")
+#
+test2 %>% 
+  filter(!is.na(position)) %>% 
+  group_by(pindespil_id, position, udfald) %>%
+  summarise(vundne = n(), .groups = "drop") %>%
+  rbind(data.frame(pindespil_id = c("8", "8"), 
+                   position = c("keeper", "keeper"), 
+                   udfald = c("tabende_hold", "vindende_hold"),
+                   vundne = c(0,0))) %>%
+  pivot_wider(names_from = udfald,
+              values_from = vundne, values_fill = list(vundne = 0)) %>% 
+  mutate(gennemsnit = vindende_hold/(tabende_hold+vindende_hold)*100) %>% 
+  ungroup() %>%
+  group_by(position) %>% 
+  mutate(gnm = cumsum(vindende_hold)/(cumsum(tabende_hold)+cumsum(vindende_hold))*100) %>% 
+  ungroup() %>% 
+  arrange(as.numeric(pindespil_id))
   
 
 
