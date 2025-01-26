@@ -135,15 +135,20 @@ pinde %>%
   ungroup() %>%
   arrange(as.numeric(id), position) %>%
   ggplot(aes(id, gennemsnit, color = position, fill = position)) +
-  geom_point(size = 1.5, position = position_dodge(width = 0.2)) +
-  geom_point(aes(y = gnm, group = position), shape = 23, size = 2, na.rm = TRUE, position = position_dodge(width = 0.2)) +
-  geom_line(aes(y = gnm, group = position, linetype = position),size = .5, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_point(size = 4, position = position_dodge(width = 0.2)) +
+  geom_point(aes(y = gnm, group = position), shape = 23, size = 6, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_line(aes(y = gnm, group = position, linetype = position),size = 3, na.rm = TRUE, position = position_dodge(width = 0.2)) +
   theme_minimal()+
   scale_x_continuous(breaks = c(1,2,3)) +
   labs(
     x = "Pindespilsnummer",  # Custom x-axis label
     y = "win%"  # Custom plot title
-  )#+
+  ) +
+  theme(legend.title = element_blank(),
+        axis.text.y = element_text(size = 16))
+
+
+#+
   # geom_segment(aes(
   #   x = dodge,  # Adjust x to align with dodge
   #   xend = dodge,  # Adjust xend to align with dodge
