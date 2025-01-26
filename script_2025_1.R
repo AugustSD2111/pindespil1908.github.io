@@ -3,6 +3,7 @@ library(dplyr)
 library(purrr)
 library(ggplot2)
 library(forcats)
+library(knitr)
 
 sti_billeder <- "C:/Users/augus/Desktop/pindespil/Jelly/pindespil1908.github.io/assets/img/"
 
@@ -61,6 +62,44 @@ pinde <- tribble(
   c( "August", "Fey", "Shimal", "Nick", "Tietze", "Claes", "Mikkel", NA, NA),
   c("Lau", "Pat", "Albert", "Max", "Sjølle", "Olabi", "Praygod", "Otman", "Thomas")
 )
+
+# Specify the content of the Rmd file
+rmd_content <- c(
+  "---",
+  "  layout: home",
+  "title: Pindespillet",
+  "subtitle: B1908 1. senior",
+  "output: md_document",
+  "---",
+  "",
+  "# Introduction",
+  "",
+  "This is a dynamically created R Markdown file showcasing a data summary.",
+  "",
+  "## Data",
+  "",
+  "Here is the data we created in the script:",
+  "",
+  "```{r}",
+  "library(knitr)",
+  "data",
+  "pinde",
+  "kable(my_data, format = \"html\")",
+  "```",
+  "```{r echo=FALSE, message=FALSE, warning=FALSE}",
+  "pinde %>%",
+    "select(-tabere) %>%",
+    "mutate(across(where(is.list), ~sapply(., toString))) %>% # Convert list columns to strings",
+    "kable(format = \"html\", table.attr = \"class='table table-striped'\")",
+  "```",
+  "```{r echo=FALSE, message=FALSE, warning=FALSE}",
+  "data %>%  kable(format = \"html\", table.attr = \"class='table table-striped'\")",
+  "```"
+)
+
+# Write the content to an Rmd file
+writeLines(rmd_content, "my_report.Rmd")
+
 
 
 funktion <- function(input) {
