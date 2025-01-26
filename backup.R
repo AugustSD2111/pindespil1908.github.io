@@ -137,7 +137,7 @@ pinde %>%
   ggplot(aes(id, gennemsnit, color = position, fill = position)) +
   geom_point(size = 4, position = position_dodge(width = 0.2)) +
   geom_point(aes(y = gnm, group = position), shape = 23, size = 6, na.rm = TRUE, position = position_dodge(width = 0.2)) +
-  geom_line(aes(y = gnm, group = position, linetype = position),size = 3, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_line(aes(y = gnm, group = position, linetype = position),size = 1, na.rm = TRUE, position = position_dodge(width = 0.2)) +
   theme_minimal()+
   scale_x_continuous(breaks = c(1,2,3)) +
   labs(
