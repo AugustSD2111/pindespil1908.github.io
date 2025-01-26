@@ -24,10 +24,6 @@ library(kableExtra)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 
-sti_billeder <- "C:/Users/augus/Desktop/pindespil/Jelly/pindespil1908.github.io/assets/img/"
-
-opdateret <- Sys.Date()
-
 data <- tribble(
   ~spiller, ~alder, ~position, 
   
@@ -82,23 +78,6 @@ pinde <- tribble(
   c("Lau", "Pat", "Albert", "Max", "Sjølle", "Olabi", "Praygod", "Otman", "Thomas")
 )
 
-
-funktion <- function(input) {
-pinde <- pinde %>% 
-  unnest(cols = c(vindere, tabere)) %>% 
-  mutate(dato = as.Date(dato, tryFormats = c("%Y-%m-%d")))
-
-forkert <- c(setdiff(pinde$tabere, data$spiller), setdiff(pinde$vindere, data$spiller)) %>% na.omit
-
-if (length(forkert) > 0) {
-  stop("idiot")
-} else {
-  message("godt")
-}
-pinde
-}
-
-pinde <- funktion(pinde)
 ```
 
 
@@ -107,12 +86,14 @@ pinde <- funktion(pinde)
 <div style="border-left: 630px solid black; height: 2px;"></div>
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
- data %>%  kable(format = "html", table.attr = "class='table table-striped'")
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
 pinde %>%
   select(-tabere) %>%
   mutate(across(where(is.list), ~sapply(., toString))) %>% # Convert list columns to strings
   kable(format = "html", table.attr = "class='table table-striped'")
 ```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ data %>%  kable(format = "html", table.attr = "class='table table-striped'")
+```
+
+
