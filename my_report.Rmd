@@ -17,7 +17,7 @@ Here is the data we created in the script:
 library(knitr)
 data
 pinde
-kable(my_data, format = "html")
+kable(pinde, format = "html")
 ```
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 pinde %>%
