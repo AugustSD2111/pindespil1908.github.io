@@ -111,7 +111,7 @@ pinde %>%
   scale_y_continuous(breaks = seq(0,2))+
   theme(legend.title = element_blank(),
         axis.text.y = element_text(size = 16)) +
-  labs(subtitle= paste0("Sidst opdateret: ", opdateret))
+  labs(subtitle= paste0("Sidst opdateret: ", opdateret)) + theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
 dev.off()
 
 # posistions graf
@@ -139,9 +139,9 @@ pinde %>%
   ungroup() %>%
   arrange(as.numeric(id), position) %>%
   ggplot(aes(id, gennemsnit, color = position, fill = position)) +
-  geom_point(size = 4, position = position_dodge(width = 0.2)) +
-  geom_point(aes(y = gnm, group = position), shape = 23, size = 6, na.rm = TRUE, position = position_dodge(width = 0.2)) +
-  geom_line(aes(y = gnm, group = position, linetype = position),size = 1, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_point(size = 5, position = position_dodge(width = 0.2)) +
+  geom_point(aes(y = gnm, group = position), shape = 23, size = 7, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_line(aes(y = gnm, group = position, linetype = position),size = 2, na.rm = TRUE, position = position_dodge(width = 0.2)) +
   theme_minimal()+
   scale_x_continuous(breaks = c(1,2,3)) +
   labs(
@@ -149,7 +149,7 @@ pinde %>%
     y = "win%"  # Custom plot title
   ) +
   theme(legend.title = element_blank(),
-        axis.text.y = element_text(size = 16))
+        axis.text.y = element_text(size = 16))+ theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
 
 
 #+
