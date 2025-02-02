@@ -85,6 +85,27 @@ Interval
 August, Fey, Shimal, Nick, Tietze, Claes, Mikkel, NA, NA
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+2025-01-28
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Gustav, Aland, Sjølle, Otman, Biele, Albert, Mikkel, Lau, Shimal, Agge,
+Fey, Thomas
+</td>
+</tr>
 </tbody>
 </table>
 <table class="table table-striped">
