@@ -79,7 +79,19 @@ pinde <- tribble(
   
   4, "2025-01-28", "Interval", 0, 0,
   c("Gustav", "Aland", "Sjølle", "Otman", "Biele", "Albert", "Mikkel", "Lau", "Shimal", "Agge", "Fey", "Thomas"),
-  c("August", "Dalby", "Trane", "Max", "Olabi", "Praygod", "Tietze", "Jogge", "Pat", "Alexander", "Claes", NA)
+  c("August", "Dalby", "Trane", "Max", "Olabi", "Praygod", "Tietze", "Jogge", "Pat", "Alexander", "Claes", NA),
+  
+  5, "2025-02-03", "4v4", 1,0,
+  c("August", "Dalby", "Nick", "Olabi", "Trane", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA),
+  c("Aland", "KC", "Konrad", "Haris", "Sjølle", "Lau", "Pat", "Mikkel", "Shimal", "Alexander", "Thomas", "Claes", "Kav", "Praygod", "Albert"),
+  
+  6, "2025-02-04", "Interval", 1, 0,
+  c("Lau", "Kav", "Mikkel", "Praygod", "Trane", "Alexander", "Fey"),
+  c("August", "Thomas", "Nick", "Jogge", "Max", "Agge", "Haris")
+  
+  
+  
+  
 )
 
 ```

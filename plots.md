@@ -106,6 +106,47 @@ Gustav, Aland, Sjølle, Otman, Biele, Albert, Mikkel, Lau, Shimal, Agge,
 Fey, Thomas
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+2025-02-03
+</td>
+<td style="text-align:left;">
+4v4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+August, Dalby, Nick, Olabi, Trane, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+2025-02-04
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Lau, Kav, Mikkel, Praygod, Trane, Alexander, Fey
+</td>
+</tr>
 </tbody>
 </table>
 <table class="table table-striped">
