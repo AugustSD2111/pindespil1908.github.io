@@ -64,7 +64,19 @@ pinde <- tribble(
   
   4, "2025-01-28", "Interval", 0, 0,
   c("Gustav", "Aland", "Sjølle", "Otman", "Biele", "Albert", "Mikkel", "Lau", "Shimal", "Agge", "Fey", "Thomas"),
-  c("August", "Dalby", "Trane", "Max", "Olabi", "Praygod", "Tietze", "Jogge", "Pat", "Alexander", "Claes", NA)
+  c("August", "Dalby", "Trane", "Max", "Olabi", "Praygod", "Tietze", "Jogge", "Pat", "Alexander", "Claes", NA),
+  
+  5, "2025-02-03", "4v4", 1,0,
+  c("August", "Dalby", "Nick", "Olabi", "Trane", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA),
+  c("Aland", "KC", "Konrad", "Haris", "Sjølle", "Lau", "Pat", "Mikkel", "Shimal", "Alexander", "Thomas", "Claes", "Kav", "Praygod", "Albert"),
+  
+  6, "2025-02-04", "Interval", 1, 0,
+  c("Lau", "Kav", "Mikkel", "Praygod", "Trane", "Alexander", "Fey"),
+  c("August", "Thomas", "Nick", "Jogge", "Max", "Agge", "Haris")
+  
+  
+  
+  
 )
 
 ###
@@ -108,7 +120,7 @@ pinde %>%
   coord_flip() +  
   theme_minimal() + 
   scale_x_discrete(name = "")+
-  scale_y_continuous(breaks = seq(0,2))+
+  #scale_y_continuous(breaks = seq(0,2))+
   theme(legend.title = element_blank(),
         axis.text.y = element_text(size = 16)) +
   labs(subtitle= paste0("Sidst opdateret: ", opdateret)) + theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
@@ -143,7 +155,7 @@ pinde %>%
   geom_point(aes(y = gnm, group = position), shape = 23, size = 7, na.rm = TRUE, position = position_dodge(width = 0.2)) +
   geom_line(aes(y = gnm, group = position, linetype = position),size = 2, na.rm = TRUE, position = position_dodge(width = 0.2)) +
   theme_minimal()+
-  scale_x_continuous(breaks = c(1,2,3)) +
+ # scale_x_continuous(breaks = c(1,2,3)) +
   labs(
     x = "Pindespilsnummer",  # Custom x-axis label
     y = "win%"  # Custom plot title
@@ -167,26 +179,26 @@ pinde %>%
 dev.off()
 
 
-ggplot(aes(x = as.numeric(pindespil_id), y = gennemsnit, color = position)) +
-  geom_point(size = 3, position = position_dodge(width = 0.2)) +
-  geom_point(aes(y = gnm, group = position), shape = 0, size = 0, na.rm = TRUE, position = position_dodge(width = 0.2)) +
-  geom_smooth(aes(y = gnm, group = position, fill = position), method = "loess", se = F, na.rm = TRUE,
-              alpha = 0.2, position = position_dodge(width = 0.2)) +
-  theme_minimal() + theme(legend.position = "bottom")
-#
-test2 %>% 
-  filter(!is.na(position)) %>% 
-  group_by(pindespil_id, position, udfald) %>%
-  summarise(vundne = n(), .groups = "drop") %>%
-  rbind(data.frame(pindespil_id = c("8", "8"), 
-                   position = c("keeper", "keeper"), 
-                   udfald = c("tabende_hold", "vindende_hold"),
-                   vundne = c(0,0))) %>%
-  pivot_wider(names_from = udfald,
-              values_from = vundne, values_fill = list(vundne = 0)) %>% 
-  mutate(gennemsnit = vindende_hold/(tabende_hold+vindende_hold)*100) %>% 
-  ungroup() %>%
-  group_by(position) %>% 
-  mutate(gnm = cumsum(vindende_hold)/(cumsum(tabende_hold)+cumsum(vindende_hold))*100) %>% 
-  ungroup() %>% 
-  arrange(as.numeric(pindespil_id))
+# ggplot(aes(x = as.numeric(pindespil_id), y = gennemsnit, color = position)) +
+#   geom_point(size = 3, position = position_dodge(width = 0.2)) +
+#   geom_point(aes(y = gnm, group = position), shape = 0, size = 0, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+#   geom_smooth(aes(y = gnm, group = position, fill = position), method = "loess", se = F, na.rm = TRUE,
+#               alpha = 0.2, position = position_dodge(width = 0.2)) +
+#   theme_minimal() + theme(legend.position = "bottom")
+# #
+# test2 %>% 
+#   filter(!is.na(position)) %>% 
+#   group_by(pindespil_id, position, udfald) %>%
+#   summarise(vundne = n(), .groups = "drop") %>%
+#   rbind(data.frame(pindespil_id = c("8", "8"), 
+#                    position = c("keeper", "keeper"), 
+#                    udfald = c("tabende_hold", "vindende_hold"),
+#                    vundne = c(0,0))) %>%
+#   pivot_wider(names_from = udfald,
+#               values_from = vundne, values_fill = list(vundne = 0)) %>% 
+#   mutate(gennemsnit = vindende_hold/(tabende_hold+vindende_hold)*100) %>% 
+#   ungroup() %>%
+#   group_by(position) %>% 
+#   mutate(gnm = cumsum(vindende_hold)/(cumsum(tabende_hold)+cumsum(vindende_hold))*100) %>% 
+#   ungroup() %>% 
+#   arrange(as.numeric(pindespil_id))
