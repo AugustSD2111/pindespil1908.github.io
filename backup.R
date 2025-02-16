@@ -202,3 +202,86 @@ dev.off()
 #   mutate(gnm = cumsum(vindende_hold)/(cumsum(tabende_hold)+cumsum(vindende_hold))*100) %>% 
 #   ungroup() %>% 
 #   arrange(as.numeric(pindespil_id))
+
+pinde %>%
+  pivot_longer(cols = c(vindere, tabere),
+               names_to = "source",  # A temporary column for identifying col1/col2
+               values_to = "spiller") %>%
+  mutate(pind = ifelse(source == "vindere", "sejre", "tabte")) %>%  # Assign 1 if from col1, 0 if from col2
+  select(-source)  %>%
+  left_join(data, by = c("spiller"="spiller")) %>%
+  filter(!is.na(spiller)) %>%
+  group_by(id, alder, pind) %>%
+  summarise(vundne = n()) %>%
+  # rbind(data.frame(id = c(3, 3),
+  #                  position = c("Keeper", "Keeper"),
+  #                  pind = c("sejre", "tabte"),
+  #                  vundne = c(1,1))) %>%
+  pivot_wider(names_from = pind,
+              values_from = vundne, values_fill = list(vundne = 0)) %>%
+  mutate(gennemsnit = sejre/(tabte+sejre)*100) %>%
+  ungroup() %>%
+  group_by(alder) %>%
+  mutate(gnm = cumsum(sejre)/(cumsum(tabte)+cumsum(sejre))*100) %>%
+  ungroup() %>%
+  arrange(as.numeric(id), alder) %>%
+  ggplot(aes(id, gennemsnit, color = alder, fill = alder)) +
+  geom_point(size = 5, position = position_dodge(width = 0.2)) +
+  geom_point(aes(y = gnm, group = alder), shape = 23, size = 7, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  geom_line(aes(y = gnm, group = alder, linetype = alder),size = 2, na.rm = TRUE, position = position_dodge(width = 0.2)) +
+  theme_minimal()+
+  # scale_x_continuous(breaks = c(1,2,3)) +
+  labs(
+    x = "Pindespilsnummer",  # Custom x-axis label
+    y = "win%"  # Custom plot title
+  ) +
+  theme(legend.title = element_blank(),
+        axis.text.y = element_text(size = 16))+ theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
+
+
+
+
+##
+
+pinde %>%
+  pivot_longer(cols = c(vindere, tabere),
+               names_to = "source",  
+               values_to = "spiller") %>%
+  mutate(pind = ifelse(source == "vindere", 1, 0)) %>% 
+  group_by(spiller) %>% 
+  mutate(sejre = sum(pind),
+         tabte = as.numeric(n())) %>% 
+  select(spiller, sejre, tabte) %>% 
+  distinct() %>% 
+  filter(!is.na(spiller)) %>% 
+  left_join(data, by="spiller") %>% 
+  ggplot(aes(sejre, tabte)) + 
+  geom_point() + geom_smooth(method = lm) +
+  coord_flip() + scale_y_continuous("Antal træninger")
+
+pinde %>% 
+  mutate(trøjer_sejr = case_when(trøjer == 1 ~ "trojer",
+                                 trøjer != 1 ~ "sort")) %>% 
+  group_by(id) %>% 
+  select(trøjer_sejr) %>% 
+  distinct() %>%
+  ungroup() %>% 
+  ggplot(aes(x = trøjer_sejr)) + 
+  geom_bar() +
+  labs(x = "Trøjer Type", y = "Count")  # Custom axis labels
+
+pinde %>% 
+  mutate(trøjer_sejr = case_when(trøjer == 1 ~ "trojer",
+                                 trøjer != 1 ~ "sort")) %>% 
+  group_by(id) %>% 
+  select(trøjer_sejr) %>% 
+  distinct() %>%
+  ungroup() %>% 
+  ggplot(aes(x = trøjer_sejr)) + 
+  geom_bar(width = 0.13, fill = "steelblue") +  # Narrower bars with color
+  geom_point(stat = "count", aes(y = after_stat(count)), size = 15, shape = 21, fill = "white") +  # Circles at the top
+  geom_text(stat = "count", aes(y = after_stat(count), label = after_stat(count)), vjust = 0.5, size = 7) +  # Labels above circles
+  labs(x = "Trøjer Type", y = "Count") +
+  theme_minimal()
+
+
