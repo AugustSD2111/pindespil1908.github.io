@@ -147,6 +147,66 @@ Interval
 Lau, Kav, Mikkel, Praygod, Trane, Alexander, Fey
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+2025-02-17
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sjølle, Max, Albert, Haris, Praygod, Kav, Konrad, Gustav
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+2025-02-18
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+August, Fey, Mikkel, Trane, Milaz, Kav, Agge, Jogge, Tietze
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+2025-02-20
+</td>
+<td style="text-align:left;">
+Skud
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Gustav, Trane, Claes, Fey, Tietze, Pat, Thomas, Agge, Konrad
+</td>
+</tr>
 </tbody>
 </table>
 <table class="table table-striped">
@@ -200,6 +260,17 @@ Keeper
 <tr>
 <td style="text-align:left;">
 Konrad
+</td>
+<td style="text-align:left;">
+Ung
+</td>
+<td style="text-align:left;">
+Keeper
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Milaz
 </td>
 <td style="text-align:left;">
 Ung

@@ -16,6 +16,7 @@ data <- tribble(
   "Aland",      "Gammel",      "Keeper",
   "KC",         "Gammel",      "Keeper",
   "Konrad",     "Ung",         "Keeper",
+  "Milaz",      "Ung",         "Keeper",
   
   "Jogge",      "Gammel",      "Forsvar",
   "Kav",        "Gammel",      "Forsvar",
@@ -72,9 +73,19 @@ pinde <- tribble(
   
   6, "2025-02-04", "Interval", 1, 0,
   c("Lau", "Kav", "Mikkel", "Praygod", "Trane", "Alexander", "Fey"),
-  c("August", "Thomas", "Nick", "Jogge", "Max", "Agge", "Haris")
+  c("August", "Thomas", "Nick", "Jogge", "Max", "Agge", "Haris"),
   
+  7, "2025-02-17", "Interval", 1, 1,
+  c("Sjølle", "Max", "Albert", "Haris", "Praygod", "Kav", "Konrad", "Gustav"),
+  c("August", "Lau", "Nick", "Mikkel", "Trane", "Olabi", "Dalby", NA),
   
+  8, "2025-02-18", "Interval", 0, 0,
+  c("August", "Fey", "Mikkel", "Trane", "Milaz", "Kav", "Agge", "Jogge", "Tietze"),
+  c("Lau", "Haris", "Praygod", "Albert", "Gustav", "Olabi", "Konrad", "Max", NA),
+  
+  9, "2025-02-20", "Skud", 0, 0,
+  c( "Gustav", "Trane", "Claes", "Fey", "Tietze", "Pat", "Thomas", "Agge", "Konrad"),
+  c("August", "Lau", "Praygod", "Albert", "Mikkel", "Alexander",  "Dalby", "Aland", NA)
   
   
 )
@@ -202,7 +213,7 @@ dev.off()
 #   mutate(gnm = cumsum(vindende_hold)/(cumsum(tabende_hold)+cumsum(vindende_hold))*100) %>% 
 #   ungroup() %>% 
 #   arrange(as.numeric(pindespil_id))
-
+png(filename = paste0(sti_billeder, "alder_rank.png"), width = 1200, height = 1000)
 pinde %>%
   pivot_longer(cols = c(vindere, tabere),
                names_to = "source",  # A temporary column for identifying col1/col2
@@ -237,28 +248,14 @@ pinde %>%
   ) +
   theme(legend.title = element_blank(),
         axis.text.y = element_text(size = 16))+ theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
-
+dev.off()
 
 
 
 ##
 
-pinde %>%
-  pivot_longer(cols = c(vindere, tabere),
-               names_to = "source",  
-               values_to = "spiller") %>%
-  mutate(pind = ifelse(source == "vindere", 1, 0)) %>% 
-  group_by(spiller) %>% 
-  mutate(sejre = sum(pind),
-         tabte = as.numeric(n())) %>% 
-  select(spiller, sejre, tabte) %>% 
-  distinct() %>% 
-  filter(!is.na(spiller)) %>% 
-  left_join(data, by="spiller") %>% 
-  ggplot(aes(sejre, tabte)) + 
-  geom_point() + geom_smooth(method = lm) +
-  coord_flip() + scale_y_continuous("Antal træninger")
 
+png(filename = paste0(sti_billeder, "trojer_vandt.png"), width = 1000, height = 1200)
 pinde %>% 
   mutate(trøjer_sejr = case_when(trøjer == 1 ~ "trojer",
                                  trøjer != 1 ~ "sort")) %>% 
@@ -267,21 +264,14 @@ pinde %>%
   distinct() %>%
   ungroup() %>% 
   ggplot(aes(x = trøjer_sejr)) + 
-  geom_bar() +
-  labs(x = "Trøjer Type", y = "Count")  # Custom axis labels
-
-pinde %>% 
-  mutate(trøjer_sejr = case_when(trøjer == 1 ~ "trojer",
-                                 trøjer != 1 ~ "sort")) %>% 
-  group_by(id) %>% 
-  select(trøjer_sejr) %>% 
-  distinct() %>%
-  ungroup() %>% 
-  ggplot(aes(x = trøjer_sejr)) + 
-  geom_bar(width = 0.13, fill = "steelblue") +  # Narrower bars with color
+  geom_bar(width = 0.13, fill = c("black", "darkorange1")) +  # Narrower bars with color
   geom_point(stat = "count", aes(y = after_stat(count)), size = 15, shape = 21, fill = "white") +  # Circles at the top
   geom_text(stat = "count", aes(y = after_stat(count), label = after_stat(count)), vjust = 0.5, size = 7) +  # Labels above circles
   labs(x = "Trøjer Type", y = "Count") +
-  theme_minimal()
-
+  theme_minimal() +
+  theme(legend.title = element_blank(),
+        axis.text.y = element_text(size = 0.01),
+        axis.text.x = element_text(size = 17))+ 
+  theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
+dev.off()
 
