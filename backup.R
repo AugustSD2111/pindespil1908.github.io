@@ -133,8 +133,10 @@ pinde %>%
   scale_x_discrete(name = "")+
   #scale_y_continuous(breaks = seq(0,2))+
   theme(legend.title = element_blank(),
-        axis.text.y = element_text(size = 16)) +
-  labs(subtitle= paste0("Sidst opdateret: ", opdateret)) + theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
+        axis.text.y = element_text(size = 16),
+        plot.subtitle = element_text(size = 20, face = "bold")) +  # Increase subtitle size
+  labs(subtitle= paste0("Sidst opdateret: ", opdateret)) + 
+  theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
 dev.off()
 
 # posistions graf
@@ -273,5 +275,17 @@ pinde %>%
         axis.text.y = element_text(size = 0.01),
         axis.text.x = element_text(size = 17))+ 
   theme(plot.background = element_rect(fill = 'lightgrey', colour = 'black'))
+dev.off()
+
+# SPILTYPE
+png(filename = paste0(sti_billeder, "spil_typer.png"), width = 1000, height = 800)
+pinde %>%
+  distinct(id, spiltype) %>%
+  count(spiltype) %>% 
+  ggplot(aes(x = spiltype, y = n, fill = spiltype)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n), vjust = 1.5, colour = "white", size = 15)+
+  scale_fill_brewer(palette = "Set1") + 
+  theme_void()
 dev.off()
 
