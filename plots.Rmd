@@ -100,7 +100,23 @@ pinde <- tribble(
   
   9, "2025-02-20", "Skud", 0, 0,
   c( "Gustav", "Trane", "Claes", "Fey", "Tietze", "Pat", "Thomas", "Agge", "Konrad"),
-  c("August", "Lau", "Praygod", "Albert", "Mikkel", "Alexander",  "Dalby", "Aland", NA)
+  c("August", "Lau", "Praygod", "Albert", "Mikkel", "Alexander",  "Dalby", "Aland", NA),
+  
+  10, "2025-02-24", "Skud", 1, 0,
+  c("Lau", "Max", "Olabi", "Sjølle", "Konrad", "Praygod", "Thomas", "Alexander",NA),
+  c("August", "Trane", "Albert", "Shimal", "Kav", "Claes", "Dalby", "Aland", "Mikkel"),
+  
+  11, "2025-02-25", "Interval", 0, 0,
+  c("Kav", "Agge", "Shimal", "Albert", "Mikkel", "Tietze", "Alexander", "Max", "Agge", "Dalby"),
+  c("August" ,"Trane", "Fey", "Gustav", "Lau" ,"Thomas" ,"Olabi", "Sjølle" ,"Praygod", "Aland"),
+  
+  12, "2025-02-27", "Interval", 0, 0,
+  c("Dalby", "Jogge", "Gustav", "Tietze", "Sjølle", "Praygod", "Thomas", "Haris", "Agge", "Mikkel", NA, NA),
+  c("Aland", "Konrad", "Kav", "Claes", "Lau", "Fey", "August", "Albert", "Olabi", "Alexander", "Shimal", "Trane"),
+  
+  13, "2025-03-06", "Interval", 0, 0,
+  c("August", "Nick", "Biele", "Albert", "Max", "Praygod", "Konrad",NA),
+  c("Sjølle", "Lau", "Pat", "Shimal", "Tietze", "Fey", "Dalby", "Aland")
   
   
 )

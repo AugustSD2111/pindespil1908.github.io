@@ -207,6 +207,87 @@ Skud
 Gustav, Trane, Claes, Fey, Tietze, Pat, Thomas, Agge, Konrad
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+2025-02-24
+</td>
+<td style="text-align:left;">
+Skud
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Lau, Max, Olabi, Sjølle, Konrad, Praygod, Thomas, Alexander, NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+2025-02-25
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Kav, Agge, Shimal, Albert, Mikkel, Tietze, Alexander, Max, Agge, Dalby
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+2025-02-27
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Dalby, Jogge, Gustav, Tietze, Sjølle, Praygod, Thomas, Haris, Agge,
+Mikkel, NA, NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+2025-03-06
+</td>
+<td style="text-align:left;">
+Interval
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+August, Nick, Biele, Albert, Max, Praygod, Konrad, NA
+</td>
+</tr>
 </tbody>
 </table>
 <table class="table table-striped">
