@@ -129,6 +129,11 @@ funktion <- function(input) {
 
 pinde <- funktion(pinde)
 
+tabte <- pinde %>% 
+  filter(!is.na(tabere)) %>% 
+  group_by(tabere) %>% 
+  summarise(tabte = n())
+
 png(filename = paste0(sti_billeder, "pinde_spiller.png"), width = 1000, height = 1200)
 pinde %>% 
   filter(!is.na(vindere)) %>% 
@@ -136,6 +141,8 @@ pinde %>%
   summarise(pinde = n()) %>% 
   left_join(data, by = c("vindere"="spiller")) %>% 
   arrange(desc(pinde)) %>% 
+  mutate(rank = rank(-pinde, ties.method = "first")) %>% 
+  left_join()
   ggplot(aes(fct_reorder(vindere, pinde), pinde))+ 
   geom_point(aes(shape = alder, fill = position, color=position), size =12)+
   geom_segment(aes(x = fct_reorder(vindere, pinde), xend = fct_reorder(vindere, pinde),
